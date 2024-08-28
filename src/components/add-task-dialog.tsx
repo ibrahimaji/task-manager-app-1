@@ -34,6 +34,7 @@ import { useState, useTransition } from "react";
 import { ReloadIcon } from "@radix-ui/react-icons";
 const formSchema = z.object({
   title: z.string().min(1).max(255),
+  link:z.string().min(1).max(2048),
   description: z.string().max(9999).optional(),
   completed: z.boolean().optional(),
   dueDate: z
@@ -128,6 +129,21 @@ export function AddTaskDialog() {
                   <FormLabel>Description</FormLabel>
                   <FormControl>
                     <Textarea placeholder="Task Description" {...field} />
+                  </FormControl>
+                  <FormDescription></FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+<FormField
+              control={form.control}
+              name="link"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Link</FormLabel>
+                  <FormControl>
+                    <Textarea placeholder="Insert your google drive link" {...field} />
                   </FormControl>
                   <FormDescription></FormDescription>
                   <FormMessage />

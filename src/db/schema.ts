@@ -1,5 +1,6 @@
 import { sql } from "drizzle-orm";
 import { integer, text, sqliteTableCreator } from "drizzle-orm/sqlite-core";
+import { title } from "process";
 
 export const accountTypeEnum = ["email", "google", "github"] as const;
 
@@ -80,6 +81,7 @@ export const tasks = sqliteTable("tasks", {
     .notNull(),
   title: text("title").notNull(),
   description: text("description"),
+  link:text("link",{length:2048}).notNull(),
   dueDate: integer("due_date", { mode: "timestamp" }),
   completed: integer("completed", { mode: "boolean" }).notNull().default(false),
   createdAt: integer("created_at", { mode: "timestamp" })
@@ -89,6 +91,8 @@ export const tasks = sqliteTable("tasks", {
     .notNull()
     .default(sql`CURRENT_TIMESTAMP`),
 });
+
+
 
 export type User = typeof users.$inferSelect;
 export type Profile = typeof profiles.$inferSelect;

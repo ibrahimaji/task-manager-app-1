@@ -9,6 +9,7 @@ import { revalidatePath } from "next/cache";
 interface NewTask {
   title: string;
   description?: string;
+  link:string;
   dueDate?: Date | null;
   completed?: boolean;
 }
